@@ -27,6 +27,7 @@ export const loginUser = (userData,history)=> (dispatch)=>{
 
 
 export const getUserData = ()=> (dispatch)=>{
+    dispatch({type: UserActionTypes.LOADING_USER});
     axios.get('/user')
     .then(res => {
         dispatch({type: UserActionTypes.SET_USER, payload: res.data});
@@ -58,4 +59,20 @@ export const signupUser = (newUserData,history)=> (dispatch)=>{
     });
 };
 
+export const uploadImage = (formData)=>(dispatch)=>{
+  dispatch({type: UserActionTypes.LOADING_USER});
+  axios.post('/user/image',formData)
+  .then(()=>{
+    dispatch(getUserData());
+  })
+  .catch(err => console.error(err));
+};
 
+export const editUserDetails = (userDetails)=>(dispatch)=>{
+  dispatch({type: UserActionTypes.LOADING_USER});
+  axios.post('/user',userDetails)
+  .then(()=>{
+    dispatch(getUserData());
+  })
+  .catch(err=>console.error(err));
+};

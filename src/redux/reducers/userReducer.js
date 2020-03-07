@@ -4,7 +4,8 @@ const initialState = {
     authenticated: false,
     credentials: {},
     likes: [],
-    notifications: []
+    notifications: [],
+    loading: false
 };
 
 
@@ -22,7 +23,13 @@ export default function(state = initialState, action)
         case UserActionTypes.SET_USER:
             return {
                 authenticated: true,
+                loading: false,
                 ...action.payload
+            };
+        case UserActionTypes.LOADING_USER:
+            return {
+                ...state,
+                loading: true,
             };
         default:
             return state;
