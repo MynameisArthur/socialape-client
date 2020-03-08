@@ -8,8 +8,12 @@ export const UserActionTypes = {
 export const UiActionTypes = {
     SET_ERRORS: 'SET_ERRORS',
     LOADING_UI: 'LOADING_UI',
+    LOADING_DATA: 'LOADING_DATA',
     CLEAR_ERRORS: 'CLEAR_ERRORS'
 };
 export const DataActionTypes = {
-
+    SET_SCREAMS: 'SET_SCREAMS',
+    SET_SCREAM: 'SET_SCREAM',
+    LIKE_SCREAM: 'LIKE_SCREAM',
+    UNLIKE_SCREAM: 'UNLIKE_SCREAM'
 };

@@ -1,4 +1,4 @@
-import {UserActionTypes,UiActionTypes} from '../types';
+import {UserActionTypes,UiActionTypes,DataActionTypes} from '../types';
 
 const initialState = {
     authenticated: false,
@@ -30,6 +30,22 @@ export default function(state = initialState, action)
             return {
                 ...state,
                 loading: true,
+            };
+        case DataActionTypes.LIKE_SCREAM:
+            return {
+                ...state,
+                likes: [
+                    ...state.likes,
+                    {
+                        userHandle: state.credentials.handle,
+                        screamId: action.payload.screamId
+                    }
+                ]
+            };
+        case DataActionTypes.UNLIKE_SCREAM:
+            return {
+                ...state,
+                likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
             };
         default:
             return state;
