@@ -34,8 +34,22 @@ export const unlikeScream = (screamId)=> dispatch => {
     .catch(err=>console.log(err));
 };
 
+//Post a Scream
+export const postScream = newScream => dispatch=>{
+    dispatch({type: UiActionTypes.LOADING_UI});
+    axios.post('/scream',newScream)
+    .then(res=>{
+        dispatch({type: DataActionTypes.POST_SCREAM, payload: res.data});
+        dispatch({type: UiActionTypes.CLEAR_ERRORS});
+    })
+    .catch(err=>{
+        dispatch({type: UiActionTypes.SET_ERRORS, payload: err.response.data});
+        console.log(err)
+    });
+};
+
 //Delete a Scream
-export const deleteScream = (screamId)=> dispatch =>{
+export const deleteScream = (screamId)=> dispatch =>{    
     axios.delete(`/scream/${screamId}`)
     .then(()=>{
         dispatch({type: DataActionTypes.DELETE_SCREAM, payload: screamId});

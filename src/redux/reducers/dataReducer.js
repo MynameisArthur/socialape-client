@@ -8,6 +8,7 @@ const initialState = {
 
 export default function(state = initialState, action)
 {
+    let index;
     switch(action.type)
     {
         case UiActionTypes.LOADING_DATA:
@@ -23,7 +24,7 @@ export default function(state = initialState, action)
             };
         case DataActionTypes.LIKE_SCREAM:
         case DataActionTypes.UNLIKE_SCREAM:
-            let index = state.screams.findIndex((scream)=>scream.screamId === action.payload.screamId);
+            index = state.screams.findIndex((scream)=>scream.screamId === action.payload.screamId);
             state.screams[index] = action.payload;
             return {
                 ...state
@@ -33,7 +34,15 @@ export default function(state = initialState, action)
             state.screams.splice(index,1);
             return {
                 ...state
-            }
+            };
+        case DataActionTypes.POST_SCREAM:
+            return {
+                ...state,
+                screams: [
+                    action.payload,
+                    ...state.screams
+                ]
+            };
         default:
             return state;
     }

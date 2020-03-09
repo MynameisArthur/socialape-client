@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
+import PostScream from './PostScream';
 // MUI
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import Notifications from '@material-ui/icons/Notifications';
 
@@ -22,9 +22,7 @@ export class Navbar extends Component {
                 {
                     authenticated ? (
                         <>
-                            <MyButton tip="Post a Scream!">
-                                <AddIcon />
-                            </MyButton>
+                            <PostScream />
                             <Link to="/">
                                 <MyButton tip="Home">
                                     <HomeIcon />
