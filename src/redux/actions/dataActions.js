@@ -51,7 +51,7 @@ export const postScream = newScream => dispatch=>{
     axios.post('/scream',newScream)
     .then(res=>{
         dispatch({type: DataActionTypes.POST_SCREAM, payload: res.data});
-        dispatch({type: UiActionTypes.CLEAR_ERRORS});
+        dispatch(clearErrors());
     })
     .catch(err=>{
         dispatch({type: UiActionTypes.SET_ERRORS, payload: err.response.data});
@@ -71,4 +71,18 @@ export const deleteScream = (screamId)=> dispatch =>{
 //Clear Errors
 export const clearErrors = ()=>dispatch=>{
     dispatch({type: UiActionTypes.CLEAR_ERRORS});
+
+};
+
+// Submit Comment
+export const submitComment = (screamId,commentData)=>dispatch=>{
+    axios.post(`/scream/${screamId}/comment`,commentData)
+    .then(res=>{
+        dispatch({type: DataActionTypes.SUBMIT_COMMENT,payload: res.data});
+        dispatch(clearErrors());
+    })
+    .catch(err=>{
+        dispatch({type:UiActionTypes.SET_ERRORS, payload: err.response.data});
+    });
+
 };
