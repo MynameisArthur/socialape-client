@@ -26,6 +26,11 @@ export default function(state=initialState,action)
                 ...state,
                 loading: true
             };
+        case UiActionTypes.STOP_LOADING_UI:
+            return {
+                ...state,
+                loading: false
+            };
         default:
             return state;
     }

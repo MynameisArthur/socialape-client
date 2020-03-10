@@ -16,6 +16,17 @@ export const getScreams = ()=>dispatch=>{
     })
 };
 
+// Get One Scream
+export const getScream = (screamId)=>dispatch=>{
+    dispatch({type: UiActionTypes.LOADING_UI});
+    axios.get(`/scream/${screamId}`)
+    .then(res=>{
+        dispatch({type: DataActionTypes.SET_SCREAM, payload: res.data});
+        dispatch({type: UiActionTypes.STOP_LOADING_UI});
+    })
+    .catch(err=>console.log(err));
+};
+
 // Like a Scream
 export const likeScream = (screamId)=> dispatch => {
     axios.get(`/scream/${screamId}/like`)
@@ -55,4 +66,9 @@ export const deleteScream = (screamId)=> dispatch =>{
         dispatch({type: DataActionTypes.DELETE_SCREAM, payload: screamId});
     })
     .catch(err => console.log(err));
+};
+
+//Clear Errors
+export const clearErrors = ()=>dispatch=>{
+    dispatch({type: UiActionTypes.CLEAR_ERRORS});
 };

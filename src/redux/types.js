@@ -9,7 +9,8 @@ export const UiActionTypes = {
     SET_ERRORS: 'SET_ERRORS',
     LOADING_UI: 'LOADING_UI',
     LOADING_DATA: 'LOADING_DATA',
-    CLEAR_ERRORS: 'CLEAR_ERRORS'
+    CLEAR_ERRORS: 'CLEAR_ERRORS',
+    STOP_LOADING_UI: 'STOP_LOADING_UI'
 };
 export const DataActionTypes = {
     SET_SCREAMS: 'SET_SCREAMS',

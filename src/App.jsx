@@ -4,7 +4,7 @@ import './App.sass';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import themeFile from './util/theme';

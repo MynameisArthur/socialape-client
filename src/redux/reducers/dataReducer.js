@@ -22,10 +22,19 @@ export default function(state = initialState, action)
                 screams: action.payload,
                 loading: false
             };
+        case DataActionTypes.SET_SCREAM:
+            return{
+                ...state,
+                scream: action.payload
+            };
         case DataActionTypes.LIKE_SCREAM:
         case DataActionTypes.UNLIKE_SCREAM:
             index = state.screams.findIndex((scream)=>scream.screamId === action.payload.screamId);
             state.screams[index] = action.payload;
+            if(state.scream.screamId === action.payload.screamId)
+            {
+                state.scream = action.payload;
+            }
             return {
                 ...state
             };
