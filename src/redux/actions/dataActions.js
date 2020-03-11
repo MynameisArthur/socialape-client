@@ -84,5 +84,17 @@ export const submitComment = (screamId,commentData)=>dispatch=>{
     .catch(err=>{
         dispatch({type:UiActionTypes.SET_ERRORS, payload: err.response.data});
     });
-
 };
+
+// Get User Data
+export const getUserData = (userHandle)=>dispatch=>{
+    dispatch({type: DataActionTypes.LOADING_DATA});
+    axios.get(`/user/${userHandle}`)
+    .then(res=>{
+        dispatch({type: DataActionTypes.SET_SCREAMS,payload: res.data.screams});
+    })
+    .catch(()=>{
+        dispatch({type: DataActionTypes.SET_SCREAMS,payload: null});
+    });
+};
+
