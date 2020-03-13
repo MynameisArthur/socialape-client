@@ -34,10 +34,10 @@ export default function(state = initialState, action)
             if(state.scream.screamId === action.payload.screamId)
             {
                 state.scream = action.payload;
-            }
+            }            
             return {
                 ...state
-            };
+            };            
         case DataActionTypes.DELETE_SCREAM:
             index = state.screams.findIndex(scream => scream.screamId === action.payload);
             state.screams.splice(index,1);
@@ -57,6 +57,7 @@ export default function(state = initialState, action)
                 ...state,
                 scream: {
                     ...state.scream,
+                    commentCount: state.scream.commentCount + 1,
                     comments: [
                         action.payload,
                         ...state.scream.comments

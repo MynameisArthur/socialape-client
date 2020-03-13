@@ -47,6 +47,11 @@ export default function(state = initialState, action)
                 ...state,
                 likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
             };
+        case UserActionTypes.MARK_NOTIFICATIONS_READ:
+            state.notifications.forEach(notification=>notification.read=true);
+            return {
+                ...state
+            };
         default:
             return state;
     }

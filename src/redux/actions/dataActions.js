@@ -71,14 +71,13 @@ export const deleteScream = (screamId)=> dispatch =>{
 //Clear Errors
 export const clearErrors = ()=>dispatch=>{
     dispatch({type: UiActionTypes.CLEAR_ERRORS});
-
 };
 
 // Submit Comment
 export const submitComment = (screamId,commentData)=>dispatch=>{
     axios.post(`/scream/${screamId}/comment`,commentData)
     .then(res=>{
-        dispatch({type: DataActionTypes.SUBMIT_COMMENT,payload: res.data});
+        dispatch({type: DataActionTypes.SUBMIT_COMMENT,payload: res.data});      
         dispatch(clearErrors());
     })
     .catch(err=>{
@@ -88,7 +87,7 @@ export const submitComment = (screamId,commentData)=>dispatch=>{
 
 // Get User Data
 export const getUserData = (userHandle)=>dispatch=>{
-    dispatch({type: DataActionTypes.LOADING_DATA});
+    dispatch({type: UiActionTypes.LOADING_DATA});
     axios.get(`/user/${userHandle}`)
     .then(res=>{
         dispatch({type: DataActionTypes.SET_SCREAMS,payload: res.data.screams});

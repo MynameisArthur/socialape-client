@@ -15,7 +15,9 @@ class LikeButton extends Component {
         {
             return true;
         }
-        else return false;
+        else {
+            return false;
+        }
     }
     likeScream = ()=>{
         this.props.likeScream(this.props.screamId);
@@ -54,7 +56,8 @@ LikeButton.propTypes = {
 };
 
 const mapStateToProps = (state)=>({
-    user: state.user
+    user: state.user,
+    
 });
 const mapActionToProps = {
     likeScream,

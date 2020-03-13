@@ -31,7 +31,8 @@ const styles = theme => ({
     },
     dialogContent: {
         padding: 20,  
-        overflow: 'hidden'      
+        overflowY: 'auto',
+        overflowX: 'hidden'  
     },
     closeButton: {
         position: 'absolute',
@@ -50,15 +51,32 @@ const styles = theme => ({
 
 class ScreamDialog extends Component{
     state = {
-        open: false
+        open: false,
+        oldPath: '',
+        newPath: ''
     };
+    componentDidMount()
+    {
+        if(this.props.openDialog)
+        {
+            this.handleOpen();
+        }
+    }
     handleOpen = ()=>{
+        let oldPath = window.location.pathname;
+        const {userHandle,screamId} = this.props;
+        const newPath = `/users/${userHandle}/scream/${screamId}`;
+        if(oldPath === newPath) oldPath = `/users/${userHandle}`;
+        window.history.pushState(null,null,newPath);
         this.setState({
-            open: true
+            open: true,
+            oldPath,
+            newPath
         });
         this.props.getScream(this.props.screamId);
     }
     handleClose = ()=>{
+        window.history.pushState(null,null,this.state.oldPath);
         this.setState({
             open: false
         });
@@ -86,7 +104,7 @@ class ScreamDialog extends Component{
                     </Typography>
                     <hr className={classes.invisibleSeparator} />
                     <Typography variant="body1">{body}</Typography>
-                    <LikeButton screamId={screamId}/>
+                    <LikeButton screamId={screamId} comments={comments}/>
                     <span>{likeCount} likes</span>
                     <MyButton tip="comments">
                         <ChatIcon color="primary"/>                        
