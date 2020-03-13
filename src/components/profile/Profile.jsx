@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './EditDetails';
 import MyButton from '../../util/MyButton';
+import ProfileSkeleton from '../../util/ProfileSkeleton';
 // MUI Stuff
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -86,7 +87,7 @@ class Profile extends Component {
                     <Button variant="contained" color="secondary" component={Link} to="/signup">Signup</Button>
                 </div>
             </Paper>
-        )) : (<p>loading...</p>); 
+        )) : (<ProfileSkeleton />); 
         return ProfileMarkup;
     }
 }
