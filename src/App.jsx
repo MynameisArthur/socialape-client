@@ -20,7 +20,7 @@ import {UserActionTypes} from './redux/types';
 import {logoutUser,getUserData} from './redux/actions/userActions';
 
 const theme = createMuiTheme(themeFile);
-
+axios.defaults.baseURL = 'https://europe-west1-socialape-73f48.cloudfunctions.net/api';
 const token = localStorage.FBIdToken;
 
 if(token)
@@ -29,7 +29,7 @@ if(token)
   if(decodedToken.exp * 1000 < Date.now())
   {
     store.dispatch(logoutUser());
-    window.location.href = '/login';
+    window.location.href = 'login';
   }
   else{
     store.dispatch({type: UserActionTypes.SET_AUTHENTICATED});
